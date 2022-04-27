@@ -1,0 +1,2 @@
+# MyWeChat
+Qt_weixin
