@@ -6,7 +6,9 @@
 **2.MyWeChat_sql打包：只能使用本地的mysql**
 **3.MyWeChat_remotesql打包:使用的服务器端的mysql进行登录验证并且实现了文件传输功能**
 **4.MyWeChat_remotesql打包2.0：修复了一个文件传输功能的bug**
-**5.MyWeChat_remotesql打包3.0:实现了用户注册功能。**
+**5.MyWeChat_remotesql打包3.0:增加用户注册功能。**
+
+**本项目为3.0版本。**
 
 ### 4.15号-页面的开发
 
