@@ -1,18 +1,26 @@
 # 仿微信客户端开发记录by dyy
 
+### 依据开发记录对不同版本的说明：
+
+**1.MyWeChat局域网：仅仅是局域网聊天用的xml文件读取账号密码；**
+**2.MyWeChat_sql打包：只能使用本地的mysql**
+**3.MyWeChat_remotesql打包:使用的服务器端的mysql进行登录验证并且实现了文件传输功能**
+**4.MyWeChat_remotesql打包2.0：修复了一个文件传输功能的bug**
+**5.MyWeChat_remotesql打包3.0:实现了用户注册功能。**
+
 ### 4.15号-页面的开发
 
 主要包含两个页面，一个是登录界面，一个是客户端界面。正好自己会剪辑，images全部是自己用Photoshop制作的，一并贴出。
 
 整体运用Qt进行布局开发，后续会使用mysql。
 
-登录界面如下：
+**登录界面如下：**
 
 ![LqwRgS.jpg](https://s1.ax1x.com/2022/04/27/LqwRgS.jpg)
 
-页面聊天界面如下：
+**页面聊天界面如下：**
 
-![LqUq3D.md.jpg](https://s1.ax1x.com/2022/04/27/LqUq3D.md.jpg)
+![LxmpwT.png](https://s1.ax1x.com/2022/04/29/LxmpwT.png)
 
 
 
@@ -20,11 +28,11 @@
 
 运用文件存取用户密码，实现用户登录验证功能，跳转窗口。
 
-分为用户不存在：
+**分为用户不存在：**
 
 ![Lq094x.jpg](https://s1.ax1x.com/2022/04/27/Lq094x.jpg)
 
-密码错误：
+**密码错误：**
 
 ![Lq0EKe.jpg](https://s1.ax1x.com/2022/04/27/Lq0EKe.jpg)
 
@@ -50,6 +58,8 @@
 
 3.为了实现更舒服的界面，将默认的任务栏去掉，添加图片按钮实现其功能；此时，移动拖拽失效，实现无任务栏的移动拖拽。
 
+4.实现具体的tab进行移动，移动对于键盘Enter和回车键的捕捉，实现优化。
+
 
 
 ###### 最近有点别的事儿，暂且缓一缓，下一步准备实现：
@@ -72,7 +82,7 @@
 
 数据库采用MySQL开发：
 
-sql脚本如下：
+**sql脚本如下：**
 
 ```sql
 CREATE DATABASE wechat;
@@ -88,7 +98,19 @@ CREATE TABLE user(
 )DEFAULT CHARSET UTF8;
 ```
 
+实现了另一个页面进行用户的注册，并验证注册是否有效：
 
+**用户注册页面：**
+
+![LxmAp9.png](https://s1.ax1x.com/2022/04/29/LxmAp9.png)
+
+**用户注册失败：**
+
+![LxmG6I.png](https://s1.ax1x.com/2022/04/29/LxmG6I.png)
+
+**用户注册成功：**
+
+![LxmdAS.png](https://s1.ax1x.com/2022/04/29/LxmdAS.png)
 
 ### 4.25记录-开发文件传输功能：
 

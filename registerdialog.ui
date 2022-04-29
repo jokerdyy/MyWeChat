@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>logindialog</class>
- <widget class="QDialog" name="logindialog">
-  <property name="enabled">
-   <bool>true</bool>
-  </property>
+ <class>registerdialog</class>
+ <widget class="QDialog" name="registerdialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -12,18 +9,6 @@
     <width>280</width>
     <height>400</height>
    </rect>
-  </property>
-  <property name="minimumSize">
-   <size>
-    <width>280</width>
-    <height>400</height>
-   </size>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>280</width>
-    <height>400</height>
-   </size>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
@@ -33,44 +18,43 @@
 	border:one;
 	
 }
-QPushButton#loginPushButton{
+
+
+
+
+
+
+QPushButton#registerPushButton{
 	background-color:rgb(7,193,96);
 	border-radius:5px;
 	color:white;
 	font:normal 15px&quot;微软雅黑&quot;;
 }
-QPushButton#loginPushButton:hover{
+QPushButton#registerPushButton:hover{
 	background-color:rgb(56,205,127);
 }
-QPushButton#btnClose{
+QPushButton#btnClose2{
 	
 	
 	image: url(:/images/close3.jpg);
 }
-QPushButton#btnClose:hover{
+QPushButton#btnClose2:hover{
 	background-color: rgba(251,115,115,200);
 	
 }
-QPushButton#btnSet{
+QPushButton#btnSet2{
 	
 	image: url(:/images/set1.png);
 }
-QPushButton#btnSet:hover{
+QPushButton#btnSet2:hover{
 	background-color: rgba(227,227,227,200);
 	
 }
-
-QDialog#logindialog{
+QDialog#registerdialog{
 	border-radius:5px;
-}
-QPushButton#btnRegister{
-color:rgb(67,104,149);
-}
-QPushButton#btnTransonly{
-color:rgb(67,104,149);
 }</string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="label_register">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -79,23 +63,14 @@ color:rgb(67,104,149);
      <height>400</height>
     </rect>
    </property>
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
-   </property>
-   <property name="frameShadow">
-    <enum>QFrame::Sunken</enum>
-   </property>
    <property name="text">
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="images/images.qrc">:/login1.png</pixmap>
+    <pixmap resource="images/images.qrc">:/login2.png</pixmap>
    </property>
   </widget>
-  <widget class="QLineEdit" name="usrLineEdit">
+  <widget class="QLineEdit" name="registerusername">
    <property name="geometry">
     <rect>
      <x>60</x>
@@ -117,7 +92,61 @@ color:rgb(67,104,149);
     <string>账号/手机号</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="pwdLineEdit">
+  <widget class="QPushButton" name="btnClose2">
+   <property name="geometry">
+    <rect>
+     <x>247</x>
+     <y>-2</y>
+     <width>33</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="registerPushButton">
+   <property name="geometry">
+    <rect>
+     <x>35</x>
+     <y>300</y>
+     <width>201</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>-1</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>注册</string>
+   </property>
+   <property name="autoDefault">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnSet2">
+   <property name="geometry">
+    <rect>
+     <x>213</x>
+     <y>0</y>
+     <width>34</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="registerpwd">
    <property name="geometry">
     <rect>
      <x>60</x>
@@ -139,99 +168,36 @@ color:rgb(67,104,149);
     <string>密码</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="loginPushButton">
+  <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>300</y>
-     <width>201</width>
-     <height>43</height>
+     <x>87</x>
+     <y>120</y>
+     <width>101</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>微软雅黑</family>
-     <pointsize>-1</pointsize>
-     <weight>50</weight>
-     <italic>false</italic>
-     <bold>false</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>登录</string>
-   </property>
-   <property name="autoDefault">
-    <bool>false</bool>
-   </property>
-   <property name="flat">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btnClose">
-   <property name="geometry">
-    <rect>
-     <x>247</x>
-     <y>-2</y>
-     <width>33</width>
-     <height>29</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btnSet">
-   <property name="geometry">
-    <rect>
-     <x>213</x>
-     <y>0</y>
-     <width>34</width>
-     <height>27</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btnRegister">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>360</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>微软雅黑</family>
-     <pointsize>10</pointsize>
+     <pointsize>14</pointsize>
     </font>
    </property>
    <property name="text">
     <string>注册</string>
    </property>
-  </widget>
-  <widget class="QPushButton" name="btnTransonly">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>360</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>微软雅黑</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>仅传输文件</string>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>btnSet2</tabstop>
+  <tabstop>btnClose2</tabstop>
+  <tabstop>registerusername</tabstop>
+  <tabstop>registerpwd</tabstop>
+  <tabstop>registerPushButton</tabstop>
+ </tabstops>
  <resources>
   <include location="images/images.qrc"/>
  </resources>

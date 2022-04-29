@@ -1,0 +1,8 @@
+MyWeChat局域网：仅仅是局域网聊天用的xml文件读取账号密码；
+MyWeChat_sql打包：只能使用本地的mysql
+MyWeChat_remotesql打包:使用的服务器端的mysql进行登录验证并且实现了文件传输功能
+MyWeChat_remotesql打包2.0：修复了一个文件传输功能的bug
+MyWeChat_remotesql打包3.0:实现了用户注册功能。
+
+
+

@@ -1,0 +1,67 @@
+CREATE DATABASE wechat;
+
+INSERT INTO user VALUES(NULL,"丁一寅","19981002");
+INSERT INTO user VALUES(NULL,"李华","19991214");
+
+
+CREATE TABLE user(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	username VARCHAR(50) NOT NULL,
+	passwd VARCHAR(50) NOT NULL
+)DEFAULT CHARSET UTF8;
+
+grant all privileges on *.* to 'root'@'%' identified by 'dyy1998' with grant option;
+
+
+void logindialog::showWeiChatWindow(){
+    //QFile file("./userlog.xml");
+    //QFile file("C:\\userlog.xml");
+    QFile file("\\\\10.51.70.180\\shared_dir\\userlog.xml");
+    if (!file.open(QFile::ReadOnly | QFile::Text)) {
+          qDebug()<<"错误";
+      }
+    mydoc.setContent(&file);
+    QDomElement root = mydoc.documentElement();
+    if(root.hasChildNodes()){
+        QDomNodeList userList = root.childNodes();
+        bool exist = false;
+        hide_window = false;
+        for(int i=0;i<userList.count();i++){
+            QDomNode user = userList.at(i);
+            QDomNodeList record = user.childNodes();
+
+            QString uname = record.at(0).toElement().text();
+            QString pword = record.at(1).toElement().text();
+            if(uname == ui->usrLineEdit->text()){
+                exist = true;
+
+                if(!(pword == ui->pwdLineEdit->text())){
+
+                    QMessageBox::warning(0,QObject::tr("提示"),"密码错误，请重新输入密码！");
+                    ui->pwdLineEdit->clear();
+                    ui->pwdLineEdit->setFocus();
+                    return;
+                }
+                hide_window = true;
+            }
+        }
+        if(!exist){
+            hide_window = false;
+            QMessageBox::warning(0,QObject::tr("提示"),"用户不存在！请重新输入。");
+            ui->usrLineEdit->clear();
+            ui->pwdLineEdit->clear();
+            ui->usrLineEdit->setFocus();
+            return;
+        }
+        //设置输错误后不会隐藏，输对了隐藏
+        //qDebug()<<"1111";
+        this->hide();
+        weiChatWindow = new MyWeChat(0);
+        //qDebug()<<"1111";
+        weiChatWindow->setWindowTitle(ui->usrLineEdit->text());
+        weiChatWindow->show();
+        //qDebug()<<"showWeixin";
+
+
+    }
+}

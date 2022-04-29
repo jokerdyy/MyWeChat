@@ -3,6 +3,7 @@
 #include<QDebug>
 #include <QDialog>
 #include"mywechat.h"
+#include"registerdialog.h"
 #include"qdom.h"
 #include<QFile>
 #include<QMessageBox>
@@ -30,6 +31,10 @@ private slots:
 
     void on_btnSet_clicked();
 //设置enter确定
+    void on_btnTransonly_clicked();
+
+    void on_btnRegister_clicked();
+
 protected:
     virtual void keyPressEvent(QKeyEvent *ev);
 
@@ -37,6 +42,7 @@ protected:
 
 private:
     MyWeChat * weiChatWindow;
+    registerdialog * registerWindow;
     QDomDocument mydoc;
     //隐藏窗口后设置拖拽移动
 private:

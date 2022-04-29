@@ -205,7 +205,7 @@ void logindialog::showWeiChatWindow()
         qDebug()<<query->value(2).toString();
         if(query->value(1).toString() == name && query->value(2).toString()==password){
             //QMessageBox::information(this,"提示","系统登录成功",QMessageBox::Ok);
-            //this->hide();
+            this->hide();
             weiChatWindow = new MyWeChat(0);
             weiChatWindow->setWindowTitle(ui->usrLineEdit->text());
             weiChatWindow->show();
@@ -233,3 +233,19 @@ void logindialog::showWeiChatWindow()
 
 
 
+
+void logindialog::on_btnTransonly_clicked()
+{
+    QMessageBox::warning(0,QObject::tr("提示"),"本功能还没实现，请登录传输文件！");
+}
+
+void logindialog::on_btnRegister_clicked()
+{
+    registerWindow = new registerdialog(0);
+    registerWindow->show();
+    //去掉边框
+
+
+    //initsql();//不需要重复打开数据库链接
+
+}

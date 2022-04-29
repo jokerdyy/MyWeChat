@@ -31,19 +31,22 @@ SOURCES += \
         mywechat.cpp \
     logindialog.cpp \
     filesrvdlg.cpp \
-    filecntdlg.cpp
+    filecntdlg.cpp \
+    registerdialog.cpp
 
 HEADERS += \
         mywechat.h \
     logindialog.h \
     filesrvdlg.h \
-    filecntdlg.h
+    filecntdlg.h \
+    registerdialog.h
 
 FORMS += \
         mywechat.ui \
     logindialog.ui \
     filesrvdlg.ui \
-    filecntdlg.ui
+    filecntdlg.ui \
+    registerdialog.ui
 
 RESOURCES += \
     images/images.qrc \
