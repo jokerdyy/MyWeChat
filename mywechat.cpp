@@ -7,19 +7,77 @@ MyWeChat::MyWeChat(QWidget *parent) :
 {
     ui->setupUi(this);
     initMyWeChat();
+    ui->userListTableWidget->setColumnCount(1);
+    ui->userListTableWidget->setColumnWidth(0,250);
+
+
+
+    //ui->chatTextEdit->installEventFilter(this);//设置完后自动调用其eventFilter函数
 
 }
+/*
+实现enter聊天框发送信息
+
+*/
+//bool MyWeChat::eventFilter(QObject *target, QEvent *e)
+//{
+//    if(target == ui->chatTextEdit)
+//    {
+//        if(e->type() == QEvent::KeyPress)//回车键
+//        {
+//             QKeyEvent *k = static_cast<QKeyEvent *>(e);
+//             if(k->key() == Qt::Key_Return)
+//             {
+//                 on_sendPushButton_clicked();
+//                 return true;
+//             }
+//        }
+//    }
+//    return MyWeChat::eventFilter(target,e);
+//}
 
 
+//void MyWeChat::keyPressEvent(QKeyEvent *ev){
+
+//    if(ui->chatTextEdit->isActiveWindow()){
+//        switch (ev->key()) {
+//        case Qt::Key_Return:
+
+//                qDebug()<<"enter";
+//                on_sendPushButton_clicked();
+
+
+//            break;
+//        case Qt::Key_Enter:
+
+//                on_sendPushButton_clicked();
+
+
+//            break;
+//        default:
+//            break;
+//        }
+
+//    }
+
+//}
 
 
 void MyWeChat::initMyWeChat(){
     myUdpSocket = new QUdpSocket(this);
-    myUdpPort = 8888；
+    myUdpPort = 23232;
     myUdpSocket->bind(myUdpPort,QUdpSocket::ShareAddress | QUdpSocket::ReuseAddressHint);
     connect(myUdpSocket,SIGNAL(readyRead()),this,SLOT(recvAndProcessChatMsg()));
-//    myfsrv = new FileSrvDlg(this);
-//    connect(myfsrv,SIGNAL(sendFileName(QString)),this,SLOT(getSfileName(QString)));//和文件有关读取文件的函数还没有
+
+
+
+}
+//获取文件名
+void MyWeChat::getSfileName(QString fname){
+    myFileName = fname;
+    int row = ui->userListTableWidget->currentRow();
+    QString rmtName = ui->userListTableWidget->item(row,0)->text();
+    sendChatMsg(SfileName,rmtName);
 }
 
 void MyWeChat::on_searchPushButton_clicked(){
@@ -28,6 +86,36 @@ void MyWeChat::on_searchPushButton_clicked(){
     sendChatMsg(OnLine);
 }
 
+//主界面传输文件按钮clicked
+void MyWeChat::on_transPushButton_clicked(){
+    if(ui->userListTableWidget->selectedItems().isEmpty()){
+        QMessageBox::warning(0,tr("选择好友"),tr("请选择文件接受者"),QMessageBox::Ok);
+        return;
+    }
+    myfsrv = new FileSrvDlg(this);
+    connect(myfsrv,SIGNAL(sendFileName(QString)),this,SLOT(getSfileName(QString)));//和文件有关读取文件的函数还没有
+
+    myfsrv->show();
+}
+
+//对方接受文件名
+void MyWeChat::recvFileName(QString name, QString hostip, QString rmtname, QString filename){
+    if(myname == rmtname){
+        int result = QMessageBox::information(this,tr("文件接收"),tr("好友 %1 向您发送文件：\r\n%2,请确认是否接收？").arg(name).arg(filename),QMessageBox::Yes,QMessageBox::No);
+        if(result == QMessageBox::Yes){
+            QString fname = QFileDialog::getSaveFileName(0,tr("保存"),filename);
+            if(!fname.isEmpty()){
+                FileCntDlg *fcnt = new FileCntDlg(this);
+                fcnt->getLocPath(fname);
+                fcnt->getSrvAddr(QHostAddress(hostip));
+                fcnt->show();
+            }
+            else{
+                sendChatMsg(RefFile,name);
+            }
+        }
+    }
+}
 
 
 
@@ -87,14 +175,14 @@ void MyWeChat::recvAndProcessChatMsg(){
             read>>name;
             offLine(name,curtime);
             break;
-//        case SfileName:
-//            read>>name>>hostip>>rname>>fname;
-//            recvFileName(name,hostip,rname,fname);
-//            break;
-//        case RefFile:
-//            read>>name>>hostip>>rname;
-//            if(myname == rname) myfsrv->cntRefused();
-//            break;
+        case SfileName:
+            read>>name>>hostip>>rname>>fname;
+            recvFileName(name,hostip,rname,fname);
+            break;
+        case RefFile:
+            read>>name>>hostip>>rname;
+            if(myname == rname) myfsrv->cntRefused();
+            break;
         }
     }
 }
@@ -150,6 +238,8 @@ QString MyWeChat::getLocChatMsg(){
 void MyWeChat::on_sendPushButton_clicked(){
     sendChatMsg(ChatMsg);
 }
+//用enter发送
+
 
 
 

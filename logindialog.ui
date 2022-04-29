@@ -37,11 +37,33 @@ QPushButton#loginPushButton{
 	background-color:rgb(7,193,96);
 	border-radius:5px;
 	color:white;
-font:normal 16px&quot;微软雅黑&quot;;
+	font:normal 16px&quot;微软雅黑&quot;;
 }
 QPushButton#loginPushButton:hover{
-background-color:rgb(56,205,127);
-}</string>
+	background-color:rgb(56,205,127);
+}
+QPushButton#btnClose{
+	
+	
+	image: url(:/images/close3.jpg);
+}
+QPushButton#btnClose:hover{
+	background-color: rgba(251,115,115,200);
+	
+}
+QPushButton#btnSet{
+	
+	image: url(:/images/set1.png);
+}
+QPushButton#btnSet:hover{
+	background-color: rgba(227,227,227,200);
+	
+}
+
+QDialog#logindialog{
+	border-radius:5px;
+}
+</string>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
@@ -51,6 +73,12 @@ background-color:rgb(56,205,127);
      <width>280</width>
      <height>400</height>
     </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
    </property>
    <property name="frameShadow">
     <enum>QFrame::Sunken</enum>
@@ -132,6 +160,32 @@ background-color:rgb(56,205,127);
    </property>
    <property name="flat">
     <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnClose">
+   <property name="geometry">
+    <rect>
+     <x>247</x>
+     <y>-2</y>
+     <width>33</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnSet">
+   <property name="geometry">
+    <rect>
+     <x>213</x>
+     <y>0</y>
+     <width>34</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

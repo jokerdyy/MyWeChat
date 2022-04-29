@@ -11,6 +11,9 @@
 #include"qdom.h"
 #include"filesrvdlg.h"
 #include"filecntdlg.h"
+#include<QKeyEvent>
+
+class FileSrvDlg;
 namespace Ui {
 class MyWeChat;
 }
@@ -31,15 +34,18 @@ public:
     QString getLocChatMsg();
     void recvFileName(QString name,QString hostip,QString rmtname,QString filename);
 
+
 protected:
     void closeEvent(QCloseEvent *event);
+    //bool eventFilter(QObject *target, QEvent *event);//事件过滤器diyizhong fangfa
+    //virtual void keyPressEvent(QKeyEvent *ev);//enter输入第二种方法
 
 private slots:
     void on_sendPushButton_clicked();
     void recvAndProcessChatMsg();
     void on_searchPushButton_clicked();
-//    void getSfileName(QString);
-//    void on_transPushButton_clicked();
+    void getSfileName(QString);
+    void on_transPushButton_clicked();
 
 private:
     Ui::MyWeChat *ui;
@@ -49,6 +55,7 @@ private:
     QDomDocument myDoc;
     QString myFileName;
     FileSrvDlg *myfsrv;
+
 
 };
 

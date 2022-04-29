@@ -7,7 +7,8 @@
 QT       += core gui
 QT      +=xml
 QT      +=network
-
+QT      +=sql
+RC_ICONS = favicon.ico
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = MyWeChat
@@ -48,5 +49,4 @@ RESOURCES += \
     images/images.qrc \
     chat_images.qrc
 
-DISTFILES += \
-    userlog.xml
+DISTFILES +=

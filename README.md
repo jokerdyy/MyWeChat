@@ -1,4 +1,4 @@
-# 仿微信客户端开发记录
+# 仿微信客户端开发记录by dyy
 
 ### 4.15号-页面的开发
 
@@ -52,7 +52,7 @@
 
 
 
-#### 最近有点别的事儿，暂且缓一缓，下一步准备实现：
+###### 最近有点别的事儿，暂且缓一缓，下一步准备实现：
 
 1.利用tcp实现文件的传输。
 
@@ -60,8 +60,58 @@
 
 3.可以实现一些其他例如添加好友等功能。
 
-#### 同时下一步准备实现一下QQ，之前做了一个简单的登录界面：
+#### 
+
+### 4.22记录-wechat数据库验证登录（注册）功能更新：
+
+连接数据库部分：暂定采用mysql，注意驱动问题，需要从官网下载https://downloads.mysql.com/archives/c-c/（libmysql.dll）并复制粘贴到，编译目录下
+
+我的为D:\Qt\5.9\mingw53_32\bin。
+
+同时注意：windeployqt *.exe打包文件后，也必须将libmysql.dll拷贝到打包目录，不然还是无法访问远程的数据库。注册功能类似。考虑到本次设计仅仅是peer to peer的模式，可以使用md5加密保证安全性，但是数据库注册则开放为大家都可以访问，所以依旧具有一定的局限性。还是类似QQ通过设计服务器更为稳妥。
+
+数据库采用MySQL开发：
+
+sql脚本如下：
+
+```sql
+CREATE DATABASE wechat;
+
+INSERT INTO user VALUES(NULL,"111","111");
+INSERT INTO user VALUES(NULL,"222","222");
+
+
+CREATE TABLE user(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	username VARCHAR(50) NOT NULL,
+	passwd VARCHAR(50) NOT NULL
+)DEFAULT CHARSET UTF8;
+```
+
+
+
+### 4.25记录-开发文件传输功能：
+
+1.设计了文件传输与接受的ui界面
+
+2.完成了文件传输的功能。分为服务器端和客户端，先发送udp包，对方可以选择接受或者拒绝，进而通过tcp传输。
+
+![Lvb654.png](https://s1.ax1x.com/2022/04/29/Lvb654.png)
+
+![Lvb2G9.png](https://s1.ax1x.com/2022/04/29/Lvb2G9.png)
+
+### 4.29记录-解决了文件传输功能的一个bug：
+
+在测试文件传输时，发现了一个bug，点击传输文件后，对于同一个人只能传输一次，页面不会重置。调试发现是因为，我在一开始就初始化好了客户端，所以需要在点击F(发送)按钮后才进行初始化，即可解决。
+
+
+
+#### 同时下一步准备实现一下QQ，目前已经做了一个简单的登录界面，如图：
 
 ![Lqs8Wq.jpg](https://s1.ax1x.com/2022/04/27/Lqs8Wq.jpg)
 
 #### 提上未来日程，待更新.......
+
+**参考文献**：Qt5开发实例、C++项目开发全程实录、Qt5开发实战、Qt开发人员手册、部分网络博客
+
+**联系方式**：yyding@std.uestc.edu.cn
