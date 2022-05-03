@@ -176,13 +176,6 @@ void logindialog::initsql()
 //    db.open();
 
     //远程数据库链接
-    db = QSqlDatabase::addDatabase("QMYSQL");
-    db.setHostName("180.76.112.152");
-    db.setPort(3306);
-    db.setDatabaseName("wechat");
-    db.setUserName("wechat");
-    db.setPassword("@zyh123456");
-    db.open();
 
 
 
